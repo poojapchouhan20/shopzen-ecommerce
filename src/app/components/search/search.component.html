@@ -1,0 +1,17 @@
+<div class="form-header">
+
+  <!-- #myInput ->TEMPLATE REFERENCE VARIABLE.PROVIDES ACCESS TO THE ELEMENT
+  keyup.enter -> EVENT FIRED WHEN USER HITS THE ENTER KEY 
+  myInput.value -> RETREIVE THE VALUE ENTERED BY THE USER 
+  doSearch(myInput.value)-> METHOD DEFINED IN OUR COMPONENT ,WE CAN GIVE IT ANY NAME -->
+  <input #myInput type="text" 
+         placeholder="Search for products ..."
+         class="au-input au-input-xl"
+         (keyup.enter)="doSearch(myInput.value)"  />
+
+<!-- (click)="doSearch(myInput.value)"-- > EVENT FIRED WHEN USER CLICKS THE MOUSE BUTTON -->
+  <button (click)="doSearch(myInput.value)" class="au-btn-submit">
+      Search
+  </button>
+
+</div>
