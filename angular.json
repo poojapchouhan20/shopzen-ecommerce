@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/angular-ecommerce",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -51,6 +52,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -133,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "angular-ecommerce"
+  "defaultProject": "angular-ecommerce",
+  "cli": {
+    "analytics": "669e055f-c7ee-4d51-a2a6-85168d55ac6e"
+  }
 }
