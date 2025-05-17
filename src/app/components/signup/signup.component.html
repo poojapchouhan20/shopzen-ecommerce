@@ -1,0 +1,28 @@
+<div class="signup-container">
+  <div class="signup-card">
+    <h2>Signup</h2>
+
+    <form (ngSubmit)="signup()">
+      <div class="form-group">
+        <input [(ngModel)]="username" name="username" placeholder="Username" required />
+      </div>
+
+      <div class="form-group">
+        <input [(ngModel)]="password" name="password" type="password" placeholder="Password" required />
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Signup</button>
+      </div>
+
+      <div class="message-group">
+      <p *ngIf="successMsg" style="color: green">{{ successMsg }}</p>
+<p *ngIf="errorMsg" style="color: red">{{ errorMsg }}</p>
+      </div>
+    </form>
+
+    <p class="login-link">
+      Already have an account? <a routerLink="/login">Login here</a>
+    </p>
+  </div>
+</div>

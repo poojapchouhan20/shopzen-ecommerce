@@ -48,6 +48,21 @@ export class ProductService {
     );
   }
 
+  //PASS IN PARAMETERS FOR PAGINATION 
+  getProductListPaginate(thePage: number, 
+    thePageSize: number, 
+    theCategoryId: number): Observable<GetResponseProducts> {
+
+// need to build URL based on category id, page and size 
+//SPRING DATA REST SUPPORTS PAGINATION OUT OF BOX SO JUST SEND THE PARAMTERS FOR PAGE AND SIZE
+const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
++ `&page=${thePage}&size=${thePageSize}`;
+
+
+return this.httpClient.get<GetResponseProducts>(searchUrl);
+}
+
+
   searchProducts(theKeyword: string): Observable<Product[]> {
 
     // need to build URL based on the keyword -URL FOR SEARCHING PRODUCTS
@@ -58,6 +73,19 @@ export class ProductService {
     return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(map(response => response._embedded.products));
      //RETURNS AN OBSERVABLE (MAP THE JSON DATA FROM SPRING DATA REST RO Product ARRAY)
   }
+
+  //ADDING PAGINATION SUPPORT TO ProductService
+  searchProductsPaginate(thePage: number, 
+    thePageSize: number, 
+    theKeyword: string): Observable<GetResponseProducts> {
+
+// need to build URL based on keyword, page and size 
+const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${theKeyword}`
++ `&page=${thePage}&size=${thePageSize}`;
+
+return this.httpClient.get<GetResponseProducts>(searchUrl);
+}
+
 
 
 }
@@ -75,9 +103,20 @@ interface GetResponse{
     }
   }
   
-    interface GetResponseProducts {
-      _embedded: {
-        products: Product[];
-      }
+  interface GetResponseProducts {
+    _embedded: {
+      products: Product[];
+    },
+    page: {
+      //SIZE OF THE PAGE
+      size: number,
+      //GRAND TOTAL OF ALL ELEMENTS IN THE DATABASE 
+      totalElements: number,
+      //TOTAL PAGES AVAILABLE
+      totalPages: number,
+      //CURRENT PAGE NUMBER
+      number: number
     }
+  }
+  
     

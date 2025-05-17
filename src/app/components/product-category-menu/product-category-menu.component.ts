@@ -10,9 +10,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductCategoryMenuComponent implements OnInit {
 
-  //define our property 
   productCategories: ProductCategory[] = [];
-  //inject the service
+
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
@@ -20,12 +19,9 @@ export class ProductCategoryMenuComponent implements OnInit {
   }
 
   listProductCategories() {
-//invoke the service 
     this.productService.getProductCategories().subscribe(
       data => {
-        //log data returned from service
         console.log('Product Categories=' + JSON.stringify(data));
-        //assign data to our property
         this.productCategories = data;
       }
     );

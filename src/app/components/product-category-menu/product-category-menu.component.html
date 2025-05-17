@@ -1,18 +1,11 @@
 <div class="menu-sidebar-content js-scrollbar1">
   <nav class="navbar-sidebar">
       <ul class="list-unstyled navbar-list">
-         <!-- LOOP OVER CATEGORIES AND BUILD LINKS DYNAMICALLY  -->
           <li *ngFor="let tempProductCategory of productCategories">
-            <!-- ADD CATEGORY ID TO LINK -->
-             <!-- ADDING CATEGORY NAME TO SHOW IT IN CATEGORY GRID LIST -> NEXT Update component to read the category name
-Edit the file: product-list.component.ts -->
             <a routerLink="/category/{{ tempProductCategory.id }}/{{ tempProductCategory.categoryName }}" routerLinkActive="active-link">
-                <!-- DISPLAY CATEGORY NAME -->
                   {{ tempProductCategory.categoryName }}
               </a>
-              
           </li>
-
       </ul>
   </nav>
 </div>
